@@ -14,21 +14,17 @@ const CTASection = () => {
             Pronto para blindar seu ambiente?
           </h2>
           <p className="text-muted-foreground max-w-lg mx-auto mb-8">
-            Agende um healthcheck gratuito e descubra as vulnerabilidades críticas
-            do seu ambiente antes que um atacante descubra.
+            Agende um bate-papo e descubra como podemos fortalecer
+            a segurança do seu negócio de forma simples e acessível.
           </p>
 
           <a
-            href="mailto:contato@blacknat.security"
+            href="/contato"
             className="inline-flex items-center gap-2 rounded-md bg-primary px-8 py-3.5 text-sm font-semibold text-primary-foreground transition-all hover:border-glow-strong hover:brightness-110"
           >
-            Agendar Healthcheck Gratuito
+            Agende um Bate-papo
             <ArrowRight className="h-4 w-4" />
           </a>
-
-          <p className="text-xs text-muted-foreground mt-4 font-mono">
-            contato@blacknat.security
-          </p>
         </div>
       </div>
     </section>
