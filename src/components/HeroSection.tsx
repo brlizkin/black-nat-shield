@@ -22,7 +22,7 @@ const HeroSection = () => {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Segurança Ofensiva
+          Consultoria de Segurança
           <br />
           <span className="text-primary text-glow">para seu Negócio</span>
         </h1>
@@ -51,7 +51,6 @@ const HeroSection = () => {
         {/* Stats */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
           {[
-            { value: "24/7", label: "Monitoramento" },
             { value: "500+", label: "Endpoints Protegidos" },
             { value: "99.9%", label: "Uptime SLA" },
             { value: "<1h", label: "Tempo de Resposta" },

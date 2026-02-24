@@ -28,8 +28,8 @@ const services = [
   },
   {
     icon: FileSearch,
-    title: "Consultoria & Compliance",
-    description: "Inteligência de segurança, políticas de governança, adequação LGPD e frameworks como ISO 27001 e NIST.",
+    title: "Treinamento e Conscientização",
+    description: "Capacitação de equipes com simulações de phishing, treinamentos práticos de segurança e campanhas de conscientização para reduzir o risco humano e fortalecer a primeira linha de defesa da sua organização.",
   },
 ];
 
