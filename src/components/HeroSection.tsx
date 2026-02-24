@@ -49,7 +49,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+        <div className="mt-20 grid grid-cols-3 gap-8 max-w-2xl mx-auto">
           {[
             { value: "500+", label: "Endpoints Protegidos" },
             { value: "99.9%", label: "Uptime SLA" },
