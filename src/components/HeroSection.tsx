@@ -22,7 +22,7 @@ const HeroSection = () => {
         </div>
 
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight mb-6">
-          Segurança Ofensiva
+          Consultoria de Segurança
           <br />
           <span className="text-primary text-glow">para seu Negócio</span>
         </h1>
