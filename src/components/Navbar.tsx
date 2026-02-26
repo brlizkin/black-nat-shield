@@ -7,12 +7,12 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass-surface">
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
-        <div className="flex items-center gap-2">
+        <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Shield className="h-7 w-7 text-primary" />
           <span className="text-lg font-bold tracking-tight text-foreground">
             Black<span className="text-primary">NAT</span> Security
           </span>
-        </div>
+        </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
           <a href="#servicos" className="hover:text-primary transition-colors">Serviços</a>
