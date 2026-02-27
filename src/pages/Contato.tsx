@@ -7,7 +7,6 @@ import { supabase } from "@/integrations/supabase/client";
 
 const Contato = () => {
   const { toast } = useToast();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
