@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Shield, ArrowRight, Mail, User, Building2, MessageSquare } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { ArrowRight, Mail, User, Building2, MessageSquare } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { supabase } from "@/integrations/supabase/client";
 
 const Contato = () => {
   const { toast } = useToast();
