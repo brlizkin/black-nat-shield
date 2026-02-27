@@ -19,7 +19,7 @@ const Contato = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -35,18 +35,32 @@ const Contato = () => {
 
     setLoading(true);
 
-    const subject = encodeURIComponent(`Contato via site - ${form.name.trim()}`);
-    const body = encodeURIComponent(
-      `Nome: ${form.name.trim()}\nEmpresa: ${form.company.trim() || "Não informada"}\nE-mail: ${form.email.trim()}\n\nMensagem:\n${form.message.trim()}`
-    );
+    try {
+      const { error: dbError } = await supabase.from("contacts").insert({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        company: form.company.trim() || null,
+        message: form.message.trim(),
+      });
 
-    window.location.href = `mailto:contato@blacknat.security?subject=${subject}&body=${body}`;
+      if (dbError) throw dbError;
 
-    setTimeout(() => {
-      setLoading(false);
-      toast({ title: "Seu cliente de e-mail foi aberto!", description: "Envie a mensagem para completar o contato." });
+      await supabase.functions.invoke("notify-contact", {
+        body: {
+          name: form.name.trim(),
+          email: form.email.trim(),
+          company: form.company.trim() || null,
+          message: form.message.trim(),
+        },
+      });
+
+      toast({ title: "Mensagem enviada!", description: "Entraremos em contato em breve." });
       setForm({ name: "", email: "", company: "", message: "" });
-    }, 1000);
+    } catch {
+      toast({ title: "Erro ao enviar.", description: "Tente novamente em instantes.", variant: "destructive" });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
