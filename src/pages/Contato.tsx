@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { ArrowRight, Mail, User, Building2, MessageSquare } from "lucide-react";
+import { Shield, ArrowRight, Mail, User, Building2, MessageSquare } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { supabase } from "@/integrations/supabase/client";
 
 const Contato = () => {
   const { toast } = useToast();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
@@ -19,7 +20,7 @@ const Contato = () => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
@@ -35,22 +36,18 @@ const Contato = () => {
 
     setLoading(true);
 
-    const { error } = await supabase.from("contacts").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      company: form.company.trim() || null,
-      message: form.message.trim(),
-    });
+    const subject = encodeURIComponent(`Contato via site - ${form.name.trim()}`);
+    const body = encodeURIComponent(
+      `Nome: ${form.name.trim()}\nEmpresa: ${form.company.trim() || "Não informada"}\nE-mail: ${form.email.trim()}\n\nMensagem:\n${form.message.trim()}`
+    );
 
-    setLoading(false);
+    window.location.href = `mailto:contato@blacknat.security?subject=${subject}&body=${body}`;
 
-    if (error) {
-      toast({ title: "Erro ao enviar mensagem.", description: "Tente novamente mais tarde.", variant: "destructive" });
-      return;
-    }
-
-    toast({ title: "Mensagem enviada!", description: "Em breve entraremos em contato." });
-    setForm({ name: "", email: "", company: "", message: "" });
+    setTimeout(() => {
+      setLoading(false);
+      toast({ title: "Seu cliente de e-mail foi aberto!", description: "Envie a mensagem para completar o contato." });
+      setForm({ name: "", email: "", company: "", message: "" });
+    }, 1000);
   };
 
   return (
